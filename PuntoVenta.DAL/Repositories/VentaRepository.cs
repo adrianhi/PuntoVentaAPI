@@ -44,8 +44,6 @@ namespace PuntoVenta.DAL.Repositories
                     throw;
                 }
             }
-
-            // Add a return statement here if needed
             return generatedSale;
         }
 

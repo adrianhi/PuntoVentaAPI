@@ -23,13 +23,16 @@ namespace PuntoVenta.IOC
             });
             services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddScoped<IVentaRepository,VentaRepository>();
-            
+            services.AddScoped<ITipoTransaccionRepository,TipoTransaccionRepository>();
+            services.AddScoped<ITransactionRepository,TransactionRepository>();
+
             services.AddAutoMapper(typeof(AutoMapperProfile));
-
-
+     
             services.AddScoped<IClientService,ClientService>();
             services.AddScoped<IProductService,ProductService>();
             services.AddScoped<IVentaService,VentaService>();
+            services.AddScoped<ITipoTransaccionService,TipoTransaccionService>();
+            services.AddScoped<ITransaccionService,TransaccionService>();
         }
     }
 }

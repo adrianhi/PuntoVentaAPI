@@ -27,7 +27,9 @@ namespace PuntoVenta.BLL.Services
             try
             {
                 var clients = await _clientRepository.Consult();
-                var clientsList = clients.Include(c => c.IdCliente).ToList();
+                var clientsList = clients.ToList();
+             
+
                 return _mapper.Map<List<ClientDTO>>(clientsList);
             }
             catch

@@ -26,9 +26,7 @@ namespace PuntoVenta.BLL.Services
                 var saleGenerated = await _ventaRepository.Register(_mapper.Map<MaestroVenta>(sale));
                 if (saleGenerated.IdVenta == 0)
                     throw new TaskCanceledException("No se pudo crear");
-
                 return _mapper.Map<VentaDTO>(saleGenerated);
-            
             } 
             catch { 
             

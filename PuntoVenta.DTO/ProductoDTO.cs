@@ -14,12 +14,11 @@ namespace PuntoVenta.DTO
         public int? IdCategoria { get; set; }
 
         public string? PrecioVenta { get; set; }
-        public string?  DescripcionCategoria { get; set; }
+     
 
         public string? Estado { get; set; }
 
         public int? Existencia { get; set; }
-
 
     }
 }

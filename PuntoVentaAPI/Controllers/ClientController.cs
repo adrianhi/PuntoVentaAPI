@@ -1,49 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PuntoVenta.BLL.Services;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PuntoVenta.BLL.Services.Contracts;
 using PuntoVenta.DTO;
 using PuntoVentaAPI.Utility;
-
 
 namespace PuntoVentaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : Controller
+    public class ClientController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IClientService _clientService;
 
-        public ProductController (IProductService productService)
+        public ClientController (IClientService clientService)
         {
-            _productService = productService;
+            _clientService = clientService;
         }
 
         [HttpGet("List")]
-        public async Task<IActionResult> Lista ( )
+        public async Task<IActionResult> List ( )
         {
-            var response = new Response<List<ProductoDTO>>();
+            var response = new Response<List<ClientDTO>>();
             try
             {
                 response.status = true;
-                response.value = await _productService.List();
+                response.value = await _clientService.List();
             }
             catch (Exception ex)
             {
                 response.status = false;
                 response.message = ex.Message;
             }
-            return Ok(response);
+                return Ok(response);
         }
 
         [HttpPost]
-        [Route("CreateProduct")]
-        public async Task<IActionResult> PostProduct([FromBody] ProductoDTO product)
+        [Route("CreateClient")]
+        public async Task<IActionResult> PostClient ([FromBody] ClientDTO client)
         {
-            var response = new Response<ProductoDTO>();
+            var response = new Response<ClientDTO>();
             try
             {
                 response.status = true;
-                response.value = await _productService.Create(product);
+                response.value = await _clientService.Create(client);
             }
             catch (Exception ex)
             {
@@ -54,14 +53,14 @@ namespace PuntoVentaAPI.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateProduct")]
-        public async Task<IActionResult> PutProduct ([FromBody] ProductoDTO product)
+        [Route("UpdateClient")]
+        public async Task<IActionResult> PutClient ([FromBody] ClientDTO client)
         {
             var response = new Response<bool>();
             try
             {
                 response.status = true;
-                response.value = await _productService.Edit(product);
+                response.value = await _clientService.Edit(client);
             }
             catch (Exception ex)
             {
@@ -70,16 +69,15 @@ namespace PuntoVentaAPI.Controllers
             }
             return Ok(response);
         }
-
         [HttpDelete]
-        [Route("DeleteProduct/{id:int}")]
-        public async Task<IActionResult> DeleteProduct (int id)
+        [Route("DeleteClient/{id:int}")]
+        public async Task<IActionResult> DeleteClient (int id)
         {
             var response = new Response<bool>();
             try
             {
                 response.status = true;
-                response.value = await _productService.Delete(id);
+                response.value = await _clientService.Delete(id);
             }
             catch (Exception ex)
             {

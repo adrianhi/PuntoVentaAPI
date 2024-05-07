@@ -11,7 +11,6 @@ namespace PuntoVenta.BLL.Services.Contracts
     {
         Task<List<ClientDTO>> List ( );
 
-       
         Task<ClientDTO> Create (ClientDTO client);
 
         Task<bool> Edit (ClientDTO client);
