@@ -70,7 +70,7 @@ namespace PuntoVenta.DAL.Repositories
             }
         }
 
-        public async Task<IQueryable<TModel>> Consultar (Expression<Func<TModel, bool>> filter = null)
+        public async Task<IQueryable<TModel>> Consult (Expression<Func<TModel, bool>> filter = null)
         {
             try
             {
