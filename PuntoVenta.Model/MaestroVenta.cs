@@ -1,5 +1,7 @@
-﻿
-namespace PuntoVentaAPI.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace PuntoVenta.Model;
 
 public partial class MaestroVenta
 {

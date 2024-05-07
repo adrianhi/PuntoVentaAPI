@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using PuntoVenta.Model;
 
-namespace PuntoVentaAPI.Models;
+namespace PuntoVenta.DAL.DBContext;
 
 public partial class PuntoVentasContext : DbContext
 {
@@ -33,10 +34,9 @@ public partial class PuntoVentasContext : DbContext
 
     public virtual DbSet<TipoTransaccion> TipoTransaccions { get; set; }
 
-    public virtual DbSet<Transaccione> Transacciones { get; set; }
+    public virtual DbSet<Transacciones> Transacciones { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
- => optionsBuilder.UseSqlServer("Server=DESKTOP-1A6EKI8\\SQLEXPRESS;Database=Punto_ventas;Trusted_Connection=True;Encrypt=false;");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -232,7 +232,7 @@ public partial class PuntoVentasContext : DbContext
             entity.Property(e => e.ReciboCobro).HasColumnName("Recibo_Cobro");
         });
 
-        modelBuilder.Entity<Transaccione>(entity =>
+        modelBuilder.Entity<Transacciones>(entity =>
         {
             entity.HasKey(e => e.IdTransaccion);
 

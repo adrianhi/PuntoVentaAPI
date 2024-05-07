@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
-namespace PuntoVentaAPI.Models;
+namespace PuntoVenta.Model;
 
 public partial class DetallesVenta
 {
@@ -22,6 +21,5 @@ public partial class DetallesVenta
 
     public DateTime? Fecha { get; set; }
 
-    [JsonIgnore]
     public virtual MaestroVenta? IdVentaNavigation { get; set; }
 }

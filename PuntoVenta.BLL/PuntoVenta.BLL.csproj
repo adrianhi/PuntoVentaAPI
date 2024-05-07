@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PuntoVenta.DAL\PuntoVenta.DAL.csproj" />
+    <ProjectReference Include="..\PuntoVenta.DTO\PuntoVenta.DTO.csproj" />
+    <ProjectReference Include="..\PuntoVenta.Model\PuntoVenta.Model.csproj" />
+    <ProjectReference Include="..\PuntoVenta.Utility\PuntoVenta.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

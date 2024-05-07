@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PuntoVentaAPI.Models;
+using PuntoVentaAPI.Services;
 
 namespace PuntoVentaAPI.Controllers
 {
@@ -15,12 +16,12 @@ namespace PuntoVentaAPI.Controllers
     {
         private readonly PuntoVentasContext _context;
         private readonly ProductController productController;
-        private readonly DetallesVentasController detallesVentaController;
+        private readonly FacturaService facturaService;
         public VentasController(PuntoVentasContext context)
         {
             _context = context;
             productController= new ProductController(_context);
-            detallesVentaController= new DetallesVentasController(_context);
+            facturaService = new FacturaService(_context);
         }
 
         // GET: api/Ventas
@@ -44,36 +45,7 @@ namespace PuntoVentaAPI.Controllers
             return maestroVenta;
         }
 
-        // PUT: api/Ventas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMaestroVenta(int id, MaestroVenta maestroVenta)
-        {
-            if (id != maestroVenta.IdVenta)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(maestroVenta).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MaestroVentaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+      
 
         // POST: api/Ventas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -82,10 +54,9 @@ namespace PuntoVentaAPI.Controllers
         {
             _context.MaestroVentas.Add(maestroVenta);
             await _context.SaveChangesAsync();
-            foreach (var item in maestroVenta.DetallesVenta)
-            {
-                await UpdateProductExistence(item.IdProducto ?? 0, item.Cantidad ?? 0);
-            }
+            DateTime fechaEmision = maestroVenta.Fecha ?? DateTime.Now;
+
+            
             return CreatedAtAction("GetMaestroVenta", new { id = maestroVenta.IdVenta }, maestroVenta);
         }
 
@@ -121,25 +92,7 @@ namespace PuntoVentaAPI.Controllers
             }
         }
 
-        // DELETE: api/Ventas/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMaestroVenta(int id)
-        {
-            var maestroVenta = await _context.MaestroVentas.FindAsync(id);
-            if (maestroVenta == null)
-            {
-                return NotFound();
-            }
-
-            _context.MaestroVentas.Remove(maestroVenta);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool MaestroVentaExists(int id)
-        {
-            return _context.MaestroVentas.Any(e => e.IdVenta == id);
-        }
+        
+        
     }
 }
