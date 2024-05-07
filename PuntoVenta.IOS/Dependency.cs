@@ -5,6 +5,8 @@ using PuntoVenta.DAL.DBContext;
 using PuntoVenta.DAL.Repositories.Contract;
 using PuntoVenta.DAL.Repositories;
 using PuntoVenta.Utility;
+using PuntoVenta.BLL.Services.Contracts;
+using PuntoVenta.BLL.Services;
 namespace PuntoVenta.IOC
 {
     public static class Dependency
@@ -21,7 +23,13 @@ namespace PuntoVenta.IOC
             });
             services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddScoped<IVentaRepository,VentaRepository>();
+            
             services.AddAutoMapper(typeof(AutoMapperProfile));
+
+
+            services.AddScoped<IClientService,ClientService>();
+            services.AddScoped<IProductService,ProductService>();
+            services.AddScoped<IVentaService,VentaService>();
         }
     }
 }

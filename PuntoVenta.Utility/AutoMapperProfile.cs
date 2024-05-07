@@ -8,6 +8,24 @@ namespace PuntoVenta.Utility
     {
         public AutoMapperProfile()
         {
+            #region
+            CreateMap<ClientDTO, MaestroCliente>()
+             .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
+             .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+             .ForMember(dest => dest.Cedula, opt => opt.MapFrom(src => src.Cedula))
+             .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion))
+             .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
+             .ForMember(dest => dest.Telefono, opt => opt.MapFrom(src => src.Telefono));
+
+            CreateMap<MaestroCliente, ClientDTO>()
+                .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Cedula, opt => opt.MapFrom(src => src.Cedula))
+                .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion))
+                .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
+                .ForMember(dest => dest.Telefono, opt => opt.MapFrom(src => src.Telefono));
+
+            #endregion
             #region CategoriaProducto
             CreateMap<CategoriaProducto, CategoriaProductoDTO>().ReverseMap();
             #endregion CategoriaProducto
