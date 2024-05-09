@@ -1,32 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PuntoVenta.BLL.Services;
 using PuntoVenta.BLL.Services.Contracts;
 using PuntoVenta.DTO;
 using PuntoVentaAPI.Utility;
 
 namespace PuntoVentaAPI.Controllers
 {
-
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TransactionController : Controller
+    public class cxcController : Controller 
     {
-        private readonly ITransaccionService _transaccionService;
+        private readonly ICxCService _cxcService;
 
-        public TransactionController (ITransaccionService transaccionService)
+        public cxcController (ICxCService cxcService)
         {
-            _transaccionService = transaccionService;
+            _cxcService = cxcService;
         }
+
 
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register ([FromBody] TransaccionDTO transanction)
+        public async Task<IActionResult> Register ([FromBody] CxCDTO cxc)
         {
-            var response = new Response<TransaccionDTO>();
+            var response = new Response<CxCDTO>();
             try
             {
                 response.status = true;
-                response.value = await _transaccionService.Register(transanction);
+                response.value = await _cxcService.Register(cxc);
             }
             catch (Exception ex)
             {

@@ -10,12 +10,12 @@ namespace PuntoVenta.Utility
         {
             #region Cliente
             CreateMap<ClientDTO, MaestroCliente>()
-             .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
-             .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
-             .ForMember(dest => dest.Cedula, opt => opt.MapFrom(src => src.Cedula))
-             .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion))
-             .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
-             .ForMember(dest => dest.Telefono, opt => opt.MapFrom(src => src.Telefono));
+                .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Cedula, opt => opt.MapFrom(src => src.Cedula))
+                .ForMember(dest => dest.Direccion, opt => opt.MapFrom(src => src.Direccion))
+                .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
+                .ForMember(dest => dest.Telefono, opt => opt.MapFrom(src => src.Telefono));
 
             CreateMap<MaestroCliente, ClientDTO>()
                 .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
@@ -115,6 +115,29 @@ namespace PuntoVenta.Utility
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Total));
 
             #endregion
+
+            #region CxC
+            CreateMap<CxCDTO, MaestroCtasxcobrar>()
+                .ForMember(dest => dest.IdCxC, opt => opt.MapFrom(src => src.IdCxC))
+                .ForMember(dest => dest.IdVenta, opt => opt.MapFrom(src => src.IdVenta))
+                .ForMember(dest => dest.IdTipoTransaccion, opt => opt.MapFrom(src => src.IdTipoTransaccion))
+                .ForMember(dest => dest.IdTransaccion, opt => opt.MapFrom(src => src.IdTransaccion))
+                .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
+                .ForMember(dest => dest.MontoTotal, opt => opt.MapFrom(src => src.MontoTotal))
+                .ForMember(dest => dest.MontoRecibido, opt => opt.MapFrom(src => src.MontoRecibido))
+                .ForMember(dest => dest.Balance, opt => opt.MapFrom(src => src.Balance));
+
+            CreateMap<MaestroCtasxcobrar, CxCDTO>()
+                .ForMember(dest => dest.IdCxC, opt => opt.MapFrom(src => src.IdCxC))
+                .ForMember(dest => dest.IdVenta, opt => opt.MapFrom(src => src.IdVenta))
+                .ForMember(dest => dest.IdTipoTransaccion, opt => opt.MapFrom(src => src.IdTipoTransaccion))
+                .ForMember(dest => dest.IdTransaccion, opt => opt.MapFrom(src => src.IdTransaccion))
+                .ForMember(dest => dest.IdCliente, opt => opt.MapFrom(src => src.IdCliente))
+                .ForMember(dest => dest.MontoTotal, opt => opt.MapFrom(src => src.MontoTotal))
+                .ForMember(dest => dest.MontoRecibido, opt => opt.MapFrom(src => src.MontoRecibido))
+                .ForMember(dest => dest.Balance, opt => opt.MapFrom(src => src.Balance));
+            #endregion
+
 
         }
 

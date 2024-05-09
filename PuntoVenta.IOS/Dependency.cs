@@ -25,6 +25,7 @@ namespace PuntoVenta.IOC
             services.AddScoped<IVentaRepository,VentaRepository>();
             services.AddScoped<ITipoTransaccionRepository,TipoTransaccionRepository>();
             services.AddScoped<ITransactionRepository,TransactionRepository>();
+            services.AddScoped<ICxCRepository,CxCRepository>();
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
      
@@ -33,6 +34,7 @@ namespace PuntoVenta.IOC
             services.AddScoped<IVentaService,VentaService>();
             services.AddScoped<ITipoTransaccionService,TipoTransaccionService>();
             services.AddScoped<ITransaccionService,TransaccionService>();
+            services.AddScoped<ICxCService, CxCService>();
         }
     }
 }

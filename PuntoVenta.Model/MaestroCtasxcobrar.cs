@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PuntoVenta.Model;
+﻿namespace PuntoVenta.Model;
 
 public partial class MaestroCtasxcobrar
 {
